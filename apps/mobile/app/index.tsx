@@ -31,7 +31,7 @@ export default function LandingPage() {
       <View style={styles.heroSection}>
         <View style={styles.imageContainer}>
           <Image
-            source={{ uri: "https://i.imgur.com/JyDSQ5q.png" }}
+            source={require("../assets/bg.gif")}
             style={styles.heroImage}
             resizeMode="cover"
           />
@@ -45,36 +45,24 @@ export default function LandingPage() {
 
       {/* Features Section */}
       <View style={styles.featuresSection}>
-        <View style={styles.featureItem}>
-          <View style={styles.featureIconContainer}>
-            <Ionicons name="people-outline" size={32} color="white" />
-          </View>
-          <Text style={styles.featureTitle}>Meaningful Matches</Text>
-          <Text style={styles.featureDescription}>
-            Our algorithm connects you with people who share your interests and
-            values
-          </Text>
-        </View>
+        <FeatureCard
+          icon="people-outline"
+          title="Meaningful Matches"
+          about="Our algorithm connects you with people who share your interests and
+            values"
+        />
 
-        <View style={styles.featureItem}>
-          <View style={styles.featureIconContainer}>
-            <Ionicons name="shield-checkmark-outline" size={32} color="white" />
-          </View>
-          <Text style={styles.featureTitle}>Safe & Secure</Text>
-          <Text style={styles.featureDescription}>
-            Your privacy matters. All profiles are verified for your safety
-          </Text>
-        </View>
+        <FeatureCard
+          icon="shield-checkmark-outline"
+          title="Safe & Secure"
+          about="Your privacy matters. All profiles are verified for your safety"
+        />
 
-        <View style={styles.featureItem}>
-          <View style={styles.featureIconContainer}>
-            <Ionicons name="heart-outline" size={32} color="white" />
-          </View>
-          <Text style={styles.featureTitle}>Success Stories</Text>
-          <Text style={styles.featureDescription}>
-            Join thousands who have found their perfect match on our platform
-          </Text>
-        </View>
+        <FeatureCard
+          icon="heart-outline"
+          title="Success Stories"
+          about="Join thousands who have found their perfect match on our platform"
+        />
       </View>
 
       {/* CTA Section */}
@@ -106,6 +94,29 @@ export default function LandingPage() {
   );
 }
 
+function FeatureCard({
+  icon,
+  title,
+  about,
+}: {
+  icon: string;
+  title: string;
+  about: string;
+}) {
+  return (
+    <View style={styles.featureItem}>
+      <View style={styles.feature}>
+        <View style={styles.featureIconContainer}>
+          <Ionicons name={icon} size={32} color="white" />
+        </View>
+        <Text style={styles.featureTitle}>{title}</Text>
+      </View>
+
+      <Text style={styles.featureDescription}>{about}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -123,7 +134,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold",
     color: "#fff",
-    letterSpacing: 3,
+    letterSpacing: 10,
   },
   tagline: {
     fontSize: 16,
@@ -169,6 +180,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 40,
   },
+  feature: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 15,
+  },
   featureItem: {
     marginBottom: 30,
   },
@@ -189,6 +207,7 @@ const styles = StyleSheet.create({
   },
   featureDescription: {
     fontSize: 16,
+    paddingLeft: 70,
     color: "#aaa",
     lineHeight: 24,
   },

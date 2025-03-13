@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import { Dispatch, SetStateAction, useState } from "react";
 import {
   View,
@@ -102,6 +103,7 @@ export default function SignInPage() {
                 {isLoading ? "Signing in..." : "Log In"}
               </Text>
             </TouchableOpacity>
+            <Link href={"/home"}>home</Link>
           </View>
         </KeyboardAvoidingView>
       </ImageBackground>
@@ -129,11 +131,7 @@ const styles = StyleSheet.create({
     padding: 25,
     borderRadius: 20,
     backgroundColor: "#fff",
-    shadowColor: "#272827",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 10,
+    boxShadow: "0 4px 15px 5px rgba(0,0,0,0.55)",
   },
   title: {
     fontSize: 24,
